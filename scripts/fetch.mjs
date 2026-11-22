@@ -29,8 +29,9 @@ try {
 } catch (e) { out.fx = { error: String(e.message) }; }
 
 // 2) Keyed public data (data.go.kr). Skipped until the DATA_GO_KR_KEY secret exists.
-const RAW = process.env.DATA_GO_KR_KEY || '';
-const KEY = RAW.includes('%') ? RAW : encodeURIComponent(RAW); // accept either the Encoding or Decoding key
+const RAW = (process.env.DATA_GO_KR_KEY || '').trim();
+const KEY = RAW.includes('%') ? RAW : encodeURIComponent(RAW); // accept either key form
+console.log('key info: length', RAW.length, 'has%', RAW.includes('%'), 'endsWith==', RAW.endsWith('=='));
 
 if (RAW) {
   // KMA ultra-short-term observation, Seoul (Jung-gu grid nx=60, ny=127)
