@@ -3,7 +3,7 @@
 ShareHows 페이지(101 등)가 읽는 **살아 있는 정보**를 한 시간마다 자동으로 갱신하는 저장소입니다.
 
 - 결과 파일: https://raw.githubusercontent.com/sociallog/sharehows-data/data/live.json
-- 갱신: GitHub Actions `refresh-live-data`, 매시 17분 (수동 실행도 가능)
+- 갱신: GitHub Actions `refresh-live-data`, 20분마다 예약 (GitHub 예약 실행은 가끔 늦거나 건너뜀), 수동 실행도 가능
 - `data` 브랜치는 매번 새로 덮어써서 커밋 1개만 남습니다.
 
 ## 들어 있는 정보
