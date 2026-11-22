@@ -6,7 +6,7 @@ const out = { updated: new Date().toISOString(), sources: {} };
 
 async function getJSON(url) {
   const r = await fetch(url, { headers: { 'User-Agent': 'sharehows-data' } });
-  if (!r.ok) throw new Error('HTTP ' + r.status);
+  if (!r.ok) { const b = (await r.text()).slice(0, 120).replace(/serviceKey=[^&\s]+/g, 'serviceKey=***').replace(/\s+/g, ' '); throw new Error('HTTP ' + r.status + ' ' + b); }
   const t = await r.text();
   try { return JSON.parse(t); } catch { throw new Error('not JSON: ' + t.slice(0, 80).replace(/serviceKey=[^&\s]+/g, 'serviceKey=***')); }
 }
