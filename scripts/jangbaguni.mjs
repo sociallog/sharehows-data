@@ -145,7 +145,7 @@ const idx = d => out.indexOf(d);
 const trio = `<section class="trio" aria-label="재료 분류"><div class='bn bdown'><h3>지금 사세요<span>내림 ${downs.length}개</span></h3><div class='cs'>${downs.map(d => chip(d, idx(d))).join('')}</div></div><div class='bn bflat'><h3>평소처럼<span>보합 ${flats.length}개</span></h3><div class='cs'>${flats.map(d => chip(d, idx(d))).join('')}</div></div><div class='bn bup'><h3>잠깐 쉬어요<span>오름 ${ups.length}개</span></h3><div class='cs'>${[...ups].reverse().map(d => chip(d, idx(d))).join('')}</div></div></section>`;
 
 // ---------- scale
-const lo = Math.min(-5, Math.floor(Math.min(...out.map(d => d.v)) / 5) * 5);
+const lo = Math.min(-5, Math.floor(Math.min(...out.map(d => d.v)) / 5) * 5 - 5); // extra room for the left-side label
 const hi = Math.max(5, Math.ceil(Math.max(...out.map(d => d.v)) / 5) * 5);
 const pos = v => (v - lo) / (hi - lo) * 100, z = pos(0), f2 = x => x.toFixed(2);
 const row = (d, i) => {
@@ -155,7 +155,7 @@ const row = (d, i) => {
   else { const r = pos(d.v); inner += `<span class='br' style='left:${f2(z)}%;width:${f2(r - z)}%;background:${C[d.k]}'></span><span class='lb' style='left:calc(${f2(r)}% + 6px);color:${C[d.k]}'>${fmt(d.v)}</span>`; }
   return `<button type='button' class='rw' data-i='${i}' aria-pressed='${i === 0 ? 'true' : 'false'}'><span class='nm'><i aria-hidden='true'>${d.emoji}</i>${d.name}</span><span class='tr'>${inner}</span></button>`;
 };
-const scale = `<section><div class="sh"><h2>가격 저울</h2><p>가운데 선이 지난주. 왼쪽 초록은 내림, 오른쪽 빨강은 오름. 재료를 누르면 장보기 팁이 열려요.</p></div>\n<div class="sc"><div class="ax"><span></span><div><span>${fmt(lo)}</span><span>0</span><span>${fmt(hi)}</span></div></div><div id="jbg-rows">${out.map(row).join('')}</div></div></section>`;
+const scale = `<section><div class="sh"><h2>가격 저울</h2><p>가운데 선이 지난주. 왼쪽 초록은 내림, 오른쪽 빨강은 오름. 재료를 누르면 장보기 팁이 열려요.</p></div>\n<div class="sc"><div class="ax"><span></span><div style="position:relative"><span>${fmt(lo)}</span><span style="position:absolute;left:${f2(z)}%;transform:translateX(-50%)">0</span><span>${fmt(hi)}</span></div></div><div id="jbg-rows">${out.map(row).join('')}</div></div></section>`;
 const d0 = out[0];
 const detail = `<section class="dt" id="jbg-dt" aria-live="polite"><div class="bv" style="background:${CS[d0.k]}">${d0.emoji}</div><div><h3>${d0.name} <span style="color:${C[d0.k]}">${fmt(d0.v)}</span></h3><p class="m">지난주 대비 도매가 · 거래 단위 ${d0.unit} · ${d0.season}</p><p>${esc(d0.tip)}</p></div></section>`;
 
