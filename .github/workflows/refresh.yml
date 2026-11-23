@@ -1,13 +1,16 @@
 name: refresh-live-data
-# GitHub's cron fires unreliably (sometimes once every few hours), so each run
-# keeps itself alive for ~5h40m and refreshes every 20 minutes. A newer run
-# cancels the older one, so there is never more than one loop.
+# GitHub's cron fires unreliably (sometimes not for 7+ hours), so each run
+# keeps itself alive for ~5h20m, refreshes every 20 minutes, and at the end
+# starts the next run itself (workflow_dispatch is allowed with GITHUB_TOKEN).
+# A newer run cancels the older one, so there is never more than one loop.
+# The cron stays as a backup in case the chain ever breaks.
 on:
   schedule:
     - cron: '7,27,47 * * * *'
   workflow_dispatch:
 permissions:
   contents: write
+  actions: write
 concurrency:
   group: refresh
   cancel-in-progress: true
@@ -37,5 +40,10 @@ jobs:
           }
           for i in $(seq 1 17); do
             if node scripts/fetch.mjs; then publish || echo "publish failed"; else echo "fetch failed (round $i)"; fi
-            [ "$i" -lt 17 ] && sleep 1200
+            if [ "$i" -lt 17 ]; then sleep 1200; fi
           done
+      - name: start the next run
+        if: always() && !cancelled()
+        env:
+          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        run: gh workflow run refresh.yml --ref main -R "$GITHUB_REPOSITORY"
