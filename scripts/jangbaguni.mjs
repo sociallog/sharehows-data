@@ -186,7 +186,9 @@ const faqHtml = `<section class="faq"><div class="sh"><h2>자주 묻는 질문</
 const table = `<section><div class="sh"><h2>이번 주 전체 표</h2><p>${range}</p></div><div class="tb"><table><thead><tr><th>재료</th><th>지난주 대비</th><th>흐름</th><th>도매 거래 단위</th></tr></thead><tbody>${out.map(d => `<tr><td>${d.name}</td><td>${fmt(d.v)}</td><td>${flowKo[d.k]}</td><td>${d.unit}</td></tr>`).join('')}</tbody></table></div></section>`;
 const srcP = `<p class="src">출처: 한국농수산식품유통공사(aT) 일별 도·소매 가격정보, 공공데이터포털(<a href="https://www.data.go.kr/data/15156057/openapi.do" rel="nofollow noopener" target="_blank">data.go.kr</a>). 전국 도매시장·품종·등급별로 이번 주와 지난주 평균을 비교한 변동률의 중간값입니다. 소매가와 차이가 있을 수 있어요. 기준일 ${Y}년 ${M}월 ${thisEnd.getUTCDate()}일, 쉐어하우스 편집부 정리.</p>`;
 
-const hero = `<section class="hero" aria-label="이번 주 요약"><div><span class="eb"><b>${weekLabel}</b>이번 주 장바구니</span><h1>${h1}</h1><p>${esc(heroP)}</p></div><div class="stp" aria-hidden="true"><span class="v">${lead.emoji}</span><span class="p">${fmt(lead.v)}</span><small>${lead.name} · 지난주 대비</small></div></section>`;
+// Weekly headline is an H2: the page keeps a single H1 (sharehows-theme SEO/GEO checklist #4).
+const heroCss = `<style>#jbg .hero h2{font-family:var(--jdisp);font-weight:400;font-size:clamp(36px,7vw,72px);line-height:1.05;margin:12px 0 10px;color:#f1fbe9;letter-spacing:-.01em}#jbg .hero h2 em{font-style:normal;color:var(--jlime)}</style>`;
+const hero = `${heroCss}<section class="hero" aria-label="이번 주 요약"><div><span class="eb"><b>${weekLabel}</b>이번 주 장바구니</span><h2>${h1}</h2><p>${esc(heroP)}</p></div><div class="stp" aria-hidden="true"><span class="v">${lead.emoji}</span><span class="p">${fmt(lead.v)}</span><small>${lead.name} · 지난주 대비</small></div></section>`;
 const body = `<div id="jbg">\n${hero}\n${trio}\n${scale}\n${detail}\n${cards}\n${faqHtml}\n${table}\n${srcP}\n</div>\n`;
 
 // ---------- tail (JSON-LD + interaction script)
@@ -203,10 +205,14 @@ const tail = `<script type="application/ld+json">${JSON.stringify(ld).replace(/<
 const wkShortTitle = `${M}월 ${wk} 주`;
 const meta = {
   meta_title: `이번 주 장바구니 지도: ${wkShortTitle} ` + ([topDown && `${topDown.name} ${abs(topDown.v)}% 내림`, topUp && `${topUp.name} ${abs(topUp.v)}% 오름`].filter(Boolean).join(', ') || '큰 변동 없음'),
-  meta_description: `전국 도매시장 가격으로 채소·과일 ${out.length}개 재료를 지난주와 비교했어요. ` + movement(downs.slice(0, 3), downs.length, ups.slice(0, 4), ups.length, false).replace(' 나머지는 지난주와 비슷해요.', '') + ' 매주 월요일 업데이트.',
+  // SEO/GEO checklist #3: answer first (numbers), 80~150 chars, meta description = OG description.
+  meta_description: (() => {
+    const a = [downs.length && `${downs.slice(0, 2).map(d => `${d.name} ${fmt(d.v)}`).join('·')} 내림`, ups.length && `${ups.slice(0, 2).map(d => `${d.name} ${fmt(d.v)}`).join('·')} 오름`].filter(Boolean).join(', ') || '큰 변동 없음';
+    return `${M}월 ${wk} 주 도매가는 ${a}. 전국 도매시장 채소·과일 ${out.length}개 재료를 지난주와 비교해 매주 월요일 업데이트합니다.`;
+  })(),
   og_title: topDown ? `이번 주는 ${topDown.name} 사는 주 (${fmt(topDown.v)})` : `이번 주 장바구니: ${wkShortTitle}`,
-  og_description: `전국 도매시장 ${out.length}개 재료 시세를 초록(내림)·빨강(오름)으로 한눈에. 매주 월요일 업데이트.`,
 };
+meta.og_description = meta.meta_description;
 meta.twitter_title = meta.og_title; meta.twitter_description = meta.og_description;
 
 const res = { generated_at: new Date().toISOString(), week: { label: weekLabel, this: [iso(thisStart), iso(thisEnd)], prev: [iso(prevStart), iso(prevEnd)] }, items: out.map(({ extra, ...d }) => d), meta, body, tail };
