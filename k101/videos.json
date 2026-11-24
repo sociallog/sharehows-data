@@ -1,0 +1,14 @@
+{"note": "Video code = 101 number + order of that number's videos (upload order). Seoul 101 · 001-3 = 3rd video for story #001. Codes never change once given; a retired video keeps its code.",
+ "videos": {
+  "dKEePUd1Cy8": "001-1", "sCKFkXqgMDQ": "001-2", "9EOGHk5wR3c": "001-3", "wA_ImV8lgE4": "001-4",
+  "A195en2ztOU": "002-1",
+  "P8Vgij4Mxpo": "003-1",
+  "Idb56ZJwTys": "004-1",
+  "4HdXi8akgIk": "016-1",
+  "9akkb4pU804": "017-1",
+  "8vnLrnM8XmM": "021-1",
+  "7PavGojaAkA": "022-1",
+  "UXLkmDr8cMk": "023-1",
+  "OfhH3BOFagY": "024-1",
+  "SWy9GdmZAfo": "025-1", "DMcWZOJby9Q": "025-2"
+ }}

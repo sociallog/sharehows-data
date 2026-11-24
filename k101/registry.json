@@ -1,0 +1,176 @@
+{
+ "updated": "2026-11-24",
+ "rule": "One number = the 101 number. Videos show \"Seoul 101 · NNN\" and put \"📘 Seoul 101 · NNN\" + link in the description. No series episode numbers.",
+ "items": {
+  "001": {
+   "en": "Airport to Seoul: two trains, one line",
+   "ko": "공항에서 서울까지, 열차는 두 종류",
+   "videos": [
+    "9EOGHk5wR3c",
+    "sCKFkXqgMDQ",
+    "wA_ImV8lgE4",
+    "dKEePUd1Cy8"
+   ],
+   "guide": "https://www.sharehows.com/incheon-airport-to-seoul/"
+  },
+  "002": {
+   "en": "That happy jingle means \"transfer here\"",
+   "ko": "신나는 국악이 나오면 갈아타는 역",
+   "videos": [
+    "A195en2ztOU"
+   ],
+   "guide": "https://www.sharehows.com/seoul-subway-transfer-music/"
+  },
+  "003": {
+   "en": "Get a transit card first",
+   "ko": "교통카드부터 사세요",
+   "videos": [
+    "P8Vgij4Mxpo"
+   ],
+   "guide": null
+  },
+  "004": {
+   "en": "Taking a taxi: red sign means empty, and no tip",
+   "ko": "택시 타기: 빨간 '빈차'면 타고, 팁은 없어요",
+   "videos": [
+    "Idb56ZJwTys"
+   ],
+   "guide": null
+  },
+  "005": {
+   "en": "Your foreign card won't open the subway gate",
+   "ko": "해외 카드로는 개찰구를 못 지나가요",
+   "videos": [],
+   "guide": null
+  },
+  "006": {
+   "en": "Side dishes are free, and so are refills",
+   "ko": "반찬은 무료, 더 달라고 해도 무료",
+   "videos": [],
+   "guide": null
+  },
+  "007": {
+   "en": "Water is free, and often self-serve",
+   "ko": "물은 무료, 셀프인 곳이 많아요",
+   "videos": [],
+   "guide": null
+  },
+  "008": {
+   "en": "Shoes off at the door",
+   "ko": "현관에선 신발을 벗어요",
+   "videos": [],
+   "guide": null
+  },
+  "009": {
+   "en": "The pink seat is for pregnant women",
+   "ko": "분홍 좌석은 임산부 배려석",
+   "videos": [],
+   "guide": null
+  },
+  "010": {
+   "en": "Call 1330 for travel help",
+   "ko": "곤란할 땐 1330",
+   "videos": [],
+   "guide": null
+  },
+  "011": {
+   "en": "Convenience stores sell basic medicine",
+   "ko": "밤에 아프면 편의점",
+   "videos": [],
+   "guide": null
+  },
+  "012": {
+   "en": "Use Naver Map or KakaoMap for walking",
+   "ko": "걸어갈 땐 네이버지도·카카오맵",
+   "videos": [],
+   "guide": null
+  },
+  "014": {
+   "en": "\"Gamsahamnida\" — thank you",
+   "ko": "딱 한마디, '감사합니다'",
+   "videos": [],
+   "guide": null
+  },
+  "015": {
+   "en": "\"Yeogiyo!\" — excuse me, over here",
+   "ko": "직원을 부를 땐 '여기요'",
+   "videos": [],
+   "guide": null
+  },
+  "016": {
+   "en": "A big night view without the crowds",
+   "ko": "인파 없는 서울 야경, 용마산 스카이워크",
+   "videos": [
+    "4HdXi8akgIk"
+   ],
+   "guide": null
+  },
+  "017": {
+   "en": "Walk the old city wall at sunset",
+   "ko": "해 질 녘 성곽길, 낙산공원",
+   "videos": [
+    "9akkb4pU804"
+   ],
+   "guide": null
+  },
+  "018": {
+   "en": "Winter in Seoul is truly cold",
+   "ko": "서울 겨울은 진짜 추워요",
+   "videos": [],
+   "guide": null
+  },
+  "019": {
+   "en": "Late June to July is rainy season",
+   "ko": "6월 말~7월 말은 장마",
+   "videos": [],
+   "guide": null
+  },
+  "020": {
+   "en": "Why the 4th floor says \"F\"",
+   "ko": "4층이 'F'인 이유",
+   "videos": [],
+   "guide": null
+  },
+  "021": {
+   "en": "Seoul bus numbers are a map",
+   "ko": "서울 버스 번호는 지도예요",
+   "videos": [
+    "8vnLrnM8XmM"
+   ],
+   "guide": null
+  },
+  "022": {
+   "en": "Winter brings snacks you won't see in summer",
+   "ko": "겨울에만 보이는 길거리 간식",
+   "videos": [
+    "7PavGojaAkA"
+   ],
+   "guide": null
+  },
+  "023": {
+   "en": "Ikseon-dong: 100-year-old houses, now cafés",
+   "ko": "익선동: 100년 된 한옥이 카페가 됐어요",
+   "videos": [
+    "UXLkmDr8cMk"
+   ],
+   "guide": null
+  },
+  "024": {
+   "en": "The Han River's oldest bridge is 126 years old",
+   "ko": "한강에서 가장 오래된 다리는 126살",
+   "videos": [
+    "OfhH3BOFagY"
+   ],
+   "guide": null
+  },
+  "025": {
+   "en": "Busan and Gyeongju work as day trips",
+   "ko": "부산·경주도 당일치기가 돼요",
+   "videos": [
+    "SWy9GdmZAfo",
+    "DMcWZOJby9Q"
+   ],
+   "guide": null
+  }
+ }
+}
