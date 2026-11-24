@@ -1,9 +1,8 @@
 // Checks the How To Seoul YouTube feed against the 101 numbering and writes out/k101-sync.json.
-// Public RSS, no key. Rule (k101/RULES.md): one number = the 101 number (e.g. 001). The -k order is internal only.
+// Public RSS, no key. Rule (k101/RULES.md): one number = the 101 number (e.g. 001). The 101 card (registry.json) is the only ledger.
 import { readFileSync, writeFileSync, mkdirSync } from 'node:fs';
 const CH = 'UCcy7MdZMFuoZJrbn7mKih7Q';
 const reg = JSON.parse(readFileSync(new URL('../k101/registry.json', import.meta.url)));
-const codes = JSON.parse(readFileSync(new URL('../k101/videos.json', import.meta.url))).videos;
 const onCard = {}; for (const [n, it] of Object.entries(reg.items)) for (const v of it.videos) onCard[v] = n;
 const dec = s => s.replace(/&amp;/g, '&').replace(/&lt;/g, '<').replace(/&gt;/g, '>').replace(/&quot;/g, '"').replace(/&#39;/g, "'");
 const label = t => { const m = t.match(/101\s*[·.\-–#]\s*(\d{3})/i); return m ? m[1] : null; };
@@ -19,14 +18,13 @@ try {
     const title = dec((e.match(/<title>([^<]*)/) || [])[1] || '');
     const published = (e.match(/<published>([^<]+)/) || [])[1];
     const desc = dec((e.match(/<media:description>([\s\S]*?)<\/media:description>/) || [])[1] || '');
-    const shown = label(title + '\n' + desc), old = legacy(desc), code = codes[id] || null, card = onCard[id] || null;
-    const want = code ? code.slice(0, 3) : null;
+    const num = label(title + '\n' + desc) || legacy(desc), card = onCard[id] || null;
     let status;
-    if (!code) status = (shown || old) ? 'give_code' : 'not_linked';    // new video: give it the next NNN-k (or decide it's not 101)
-    else if (card !== want) status = 'add_to_101_card';                   // code given, but the 101 card doesn't show the video
-    else if ((shown || old) !== want) status = 'fix_youtube_label';   // description has no 101 number/link, or a different one                // description/title lacks "Seoul 101 · NNN-k"
-    else status = 'ok';
-    const v = { id, title, published, code, shown, legacy: old, card, status };
+    if (num && card === num) status = 'ok';
+    else if (num && card !== num) status = 'add_to_101_card';   // video says 101 · NNN, card NNN doesn't have it -> Claude adds it
+    else if (card) status = 'add_101_line_on_youtube';         // on a 101 card, but the video has no 101 line
+    else status = 'not_linked';                                // no number, not on 101 -> ask YunShik which number (or none)
+    const v = { id, title, published, num, card, status };
     out.videos.push(v); if (status !== 'ok') out.todo.push(v);
   }
   out.counts = out.videos.reduce((a, v) => (a[v.status] = (a[v.status] || 0) + 1, a), {});
