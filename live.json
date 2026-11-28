@@ -1,0 +1,38 @@
+{
+ "updated": "2026-11-28T12:04:44.483Z",
+ "sources": {
+  "fx": "Frankfurter (central bank reference rates)",
+  "weather": "Korea Meteorological Administration, ultra-short-term observation (Seoul)",
+  "air": "AirKorea (Korea Environment Corporation), Seoul station average"
+ },
+ "fx": {
+  "date": "2026-11-28",
+  "usd_krw": 1340.4,
+  "per_1000_krw": {
+   "USD": 0.746,
+   "ARS": 1192.7,
+   "BRL": 4.239,
+   "CLP": 773.8,
+   "CNY": 4.965,
+   "COP": 2646.6,
+   "EUR": 0.68,
+   "JPY": 118.9,
+   "MXN": 14.6,
+   "PEN": 2.587
+  }
+ },
+ "weather": {
+  "at": "202611282000",
+  "temp_c": 3.4,
+  "rain_1h_mm": 0,
+  "humidity": 56,
+  "wind_ms": 4.3,
+  "precip_type": 0
+ },
+ "air": {
+  "at": "2026-11-28 20:00",
+  "pm10": 18,
+  "pm25": 9,
+  "stations": 40
+ }
+}
